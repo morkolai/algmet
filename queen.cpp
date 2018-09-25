@@ -62,6 +62,6 @@ bool sjekkPoss(int x, int y) {
 
 void display() {
 	for (int i = 1; i < LEN; i++) {
-		std::cout << '(' << i << ', ' << pos[i] << ')' << std::endl;
+		std::cout << '(' << i << ", " << pos[i] << ')' << std::endl;
 	}
 }
