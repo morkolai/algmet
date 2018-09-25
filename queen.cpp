@@ -20,7 +20,7 @@ int main() {
 }
 
 void dronning(int x) {
-	if (x == N) {
+	if (x == N + 1) {
 		display();
 		ant++;
 	}
@@ -36,7 +36,7 @@ void dronning(int x) {
 bool sjekkPoss(int x, int y) {
 
 	for (int i = 1; i < LEN; i++) {					   //sjekker y-pos/kolonne
-		if (pos[i] = y) {
+		if (pos[i] == y) {
 			return false;
 		}
 	}
@@ -62,6 +62,6 @@ bool sjekkPoss(int x, int y) {
 
 void display() {
 	for (int i = 1; i < LEN; i++) {
-		std::cout << '(' << i << ', ' << pos[i] << ')' << std::endl;
+		std::cout << pos[i] << " ";
 	}
 }
