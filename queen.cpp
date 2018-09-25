@@ -1,7 +1,7 @@
 
 #include <iostream>
 
-int const N = 4;
+int const N = 20;
 int const LEN = N + 1;
 int pos[LEN];
 int ant = 0;
@@ -14,8 +14,7 @@ void display();
 int main() {
 
 	dronning(1);
-	display();
-
+	std::cout << ant;
 	return 0;
 }
 
@@ -62,6 +61,7 @@ bool sjekkPoss(int x, int y) {
 
 void display() {
 	for (int i = 1; i < LEN; i++) {
-		std::cout << pos[i] << " ";
+		std::cout << '(' << i << ", " << pos[i] << ")\n";
 	}
+	std::cout << std::endl;
 }
