@@ -4,6 +4,7 @@
 int const N = 4;
 int const LEN = N + 1;
 int pos[LEN];
+int ant = 0;
 
 
 void dronning(int x);
@@ -16,6 +17,20 @@ int main() {
 	display();
 
 	return 0;
+}
+
+void dronning(int x) {
+	if (x == N) {
+		display();
+		ant++;
+	}
+	for (int i = 1; i <= N; i++) {
+		if (sjekkPoss(x, i)) {
+			pos[x] = i;
+			dronning(x + 1);
+			pos[x] = -1;
+		}
+	}
 }
 
 bool sjekkPoss(int x, int y) {
