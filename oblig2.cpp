@@ -2,11 +2,11 @@
 #define _CRT_SECURE_NO_WARNINGS
 #endif
 
-
 #include <iostream>
 #include <cstring>
 
 const int LEN = 15;
+int len;
 
 char * txt;
 
@@ -22,10 +22,11 @@ int main() {
 
 	char temp[LEN];
 	std::cin.getline(temp, LEN);
-	txt = new char[strlen(temp)+1];
+	len = strlen(temp);
+	txt = new char[len];
 	strcpy(txt, temp);
-	
-	perm(0);                             
+	 
+	perm(0);
 										
 	std::cout << '\n';
 	display(txt);                        
@@ -47,13 +48,13 @@ bool isVowel(char a) {
 
 //checks a set of rules set by the task description
 bool check(char a[]) {
-	for (int i = 1; i < LEN; i++) {
+	for (int i = 2; i <= len; i++) {
 		if (a[i] == a[i - 1] && isVowel(a[i]) && isVowel(a[i - 1])) {
 			return false;
 		}
 	}
 
-	for (int i = 2; i < LEN; i++) {
+	for (int i = 3; i <= len; i++) {
 		if (isVowel(a[i]) && isVowel(a[i - 1]) && isVowel(a[i - 2])) {
 			return false;
 		}
@@ -64,14 +65,14 @@ bool check(char a[]) {
 		}
 	}
 
-	for (int i = 3; i < LEN; i++) {
+	for (int i = 4; i <= len; i++) {
 		if (!isVowel(a[i]) && !isVowel(a[i - 1]) && !isVowel(a[i - 2])
 			&& !isVowel(a[i - 3])) {
 			return false;
 		}
 	}
 
-	if (a[0] == a[1]) {
+	if (a[1] == a[2]) {
 		return false;
 	}
 
@@ -85,21 +86,21 @@ void swap(char & x, char & y) {
 }
 
 void rotateLeft(char a[], int i) {   
-	int x, k;
-	x = a[i];                           
-	for (k = i + 1; k < LEN; k++)          
+	int k;
+	char x = a[i];                          
+	for (k = i + 1; k < len; k++)          
 		a[k - 1] = a[k];
-	a[LEN - 1] = x; 
+	a[len - 1] = x; 
 }
 
 void perm(int i) {
 	int t;
-	if (i == LEN - 1)                       
+	if (i == len - 1 && check(txt))                       
 		display(txt);                    
 	else {                              
 		perm(i + 1);                       
 											
-		for (t = i + 1; t < LEN; t++) {
+		for (t = i + 1; t < len; t++) {
 			swap(txt[i], txt[t]);         
 										  
 			perm(i + 1);                 
@@ -110,7 +111,7 @@ void perm(int i) {
 
 void display(char a[]) {
 	std::cout << "\n";
-	for (int i = 0; i < LEN; i++)
+	for (int i = 0; i < len; i++)
 		std::cout << a[i] << ' ';
 }
 
