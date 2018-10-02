@@ -8,7 +8,7 @@
 
 const int LEN = 15;
 
-char txt[];
+char * txt;
 
 bool isVowel(char a);
 bool check(char a[]);
@@ -21,8 +21,8 @@ void display(char a[]);
 int main() {
 
 	char temp[LEN];
-	std::cin >> temp;
-	char * txt = new char[strlen(temp)+1];
+	std::cin.getline(temp, LEN);
+	txt = new char[strlen(temp)+1];
 	strcpy(txt, temp);
 	
 	perm(0);                             
