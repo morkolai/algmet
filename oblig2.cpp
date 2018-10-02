@@ -25,6 +25,10 @@ int main() {
 	len = strlen(temp);
 	txt = new char[len];
 	strcpy(txt, temp);
+
+	for (int i = 0; i < len; i++) {
+		std::cout << isVowel(txt[i]) << std::endl;
+	}
 	 
 	perm(0);
 										
@@ -36,8 +40,10 @@ int main() {
 
 //true if a is a vowel, elseway false
 bool isVowel(char a) {
+	
 	a = toupper(a);
 	char vowels[] = "AEIOU";
+
 	for (int i = 0; i < 5; i++) {
 		if (a == vowels[i]) {
 			return true;
@@ -48,13 +54,13 @@ bool isVowel(char a) {
 
 //checks a set of rules set by the task description
 bool check(char a[]) {
-	for (int i = 2; i <= len; i++) {
+	for (int i = 2; i < len; i++) {
 		if (a[i] == a[i - 1] && isVowel(a[i]) && isVowel(a[i - 1])) {
 			return false;
 		}
 	}
 
-	for (int i = 3; i <= len; i++) {
+	for (int i = 3; i < len; i++) {
 		if (isVowel(a[i]) && isVowel(a[i - 1]) && isVowel(a[i - 2])) {
 			return false;
 		}
@@ -65,7 +71,7 @@ bool check(char a[]) {
 		}
 	}
 
-	for (int i = 4; i <= len; i++) {
+	for (int i = 4; i < len; i++) {
 		if (!isVowel(a[i]) && !isVowel(a[i - 1]) && !isVowel(a[i - 2])
 			&& !isVowel(a[i - 3])) {
 			return false;
@@ -95,7 +101,7 @@ void rotateLeft(char a[], int i) {
 
 void perm(int i) {
 	int t;
-	if (i == len - 1 && check(txt))                       
+	if (i == len - 1  && check(txt))                       
 		display(txt);                    
 	else {                              
 		perm(i + 1);                       
