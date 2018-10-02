@@ -1,4 +1,10 @@
+#ifdef _MSC_VER
+#define _CRT_SECURE_NO_WARNINGS
+#endif
+
+
 #include <iostream>
+#include <cstring>
 
 const int LEN = 15;
 
@@ -14,12 +20,20 @@ void display(char a[]);
 
 int main() {
 
-
-
+	char temp[LEN];
+	std::cin >> temp;
+	char * txt = new char[strlen(temp)+1];
+	strcpy(txt, temp);
+	
+	perm(0);                             
+										
+	std::cout << '\n';
+	display(txt);                        
+	std::cout << "\n\n";                      
 	return 0;
 }
 
-
+//true if a is a vowel, elseway false
 bool isVowel(char a) {
 	a = toupper(a);
 	char vowels[] = "AEIOU";
@@ -31,6 +45,7 @@ bool isVowel(char a) {
 	return false;
 }
 
+//checks a set of rules set by the task description
 bool check(char a[]) {
 	for (int i = 1; i < LEN; i++) {
 		if (a[i] == a[i - 1] && isVowel(a[i]) && isVowel(a[i - 1])) {
@@ -47,8 +62,20 @@ bool check(char a[]) {
 			!isVowel(a[i - 1]) && !isVowel(a[i - 2])) {
 			return false;
 		}
-
 	}
+
+	for (int i = 3; i < LEN; i++) {
+		if (!isVowel(a[i]) && !isVowel(a[i - 1]) && !isVowel(a[i - 2])
+			&& !isVowel(a[i - 3])) {
+			return false;
+		}
+	}
+
+	if (a[0] == a[1]) {
+		return false;
+	}
+
+	return true;
 }
 
 void swap(char & x, char & y) {
