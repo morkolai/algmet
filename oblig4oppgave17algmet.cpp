@@ -42,6 +42,17 @@ void Dict::insert(itemType v, infoType info)
 	x = new node(v, info, t->next);
 	t->next = x;
 }
+
+// leser inn 2 og 2 fra fil
+void lesFraFil() {
+
+}
+
+void LeggTilToBokstaverITrær(itemType bokstaver) {
+
+}
+
 int main() {
+
 	return 0;
 }
