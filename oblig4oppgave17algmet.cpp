@@ -1,9 +1,10 @@
 #include <iostream>
-#include <ostream>
+#include <fstream>
 typedef char itemType;
 typedef int infoType;
 const infoType infoNIL = NULL;
 const itemType itemMAX = 91;
+const itemType OPPGAVE17[] = "OPPG_17.TXT";
 class Dict
 {
 private:
@@ -43,12 +44,21 @@ void Dict::insert(itemType v, infoType info)
 	t->next = x;
 }
 
-// leser inn 2 og 2 fra fil
+// leser inn 2 og 2 bokstaver fra fil med format AA BB CC ...
 void lesFraFil() {
-
+	itemType ord[1];
+	std::ifstream inn(OPPGAVE17);
+	if (inn) {
+		while (inn >> ord) {
+			LeggTilToBokstaverITraer(*ord);			// legger til bokstavduoen
+		}
+	}
+	else { // Feilmelding
+		std::cout << "Finner ikke filen " << OPPGAVE17 << ". Husk at du trenger filen for aa kjore programmet.\n";
+	}
 }
 
-void LeggTilToBokstaverITrær(itemType bokstaver) {
+void LeggTilToBokstaverITraer(itemType bokstaver) {
 
 }
 
